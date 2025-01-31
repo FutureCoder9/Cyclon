@@ -1,13 +1,4 @@
 
-
----
-
-### Step 2: Add Subproject `README.md` Files
-
-Each subproject should have its own `README.md` file. Here’s a template for each:
-
-#### **Database_Schema/README.md**
-```markdown
 # Cyclon Database Schema
 
 This folder contains the database schema for **Cyclon**, a local e-commerce marketplace in South Africa.
@@ -28,6 +19,10 @@ This folder contains the database schema for **Cyclon**, a local e-commerce mark
 
 ## 📄 License
 This project is licensed under the MIT License. See [LICENSE](../LICENSE) for details.
+
+#### **Database_Schema/README.md**
+```markdown
+
 
 
 Cyclon/
