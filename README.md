@@ -23,3 +23,9 @@
 ### 4. [Backup, Recovery & Performance Tuning](Backup_Recovery_Performance_Tuning/)
 - Scripts and techniques for database backup, recovery, and performance tuning.
 - [View Project](Backup_Recovery_Performance_Tuning/)
+
+📄 License
+This project is licensed under the MIT License. See LICENSE for details.
+
+🚀 Feedback and contributions are welcome!
+🔗 Connect with me on LinkedIn.
