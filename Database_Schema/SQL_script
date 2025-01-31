@@ -78,3 +78,12 @@ CREATE TABLE Wishlists (
     CustomerID NUMBER NOT NULL,
     ProductID NUMBER NOT NULL,
     FOREIGN KEY (CustomerID) REFERENCES Users
+
+
+__________________________________
+
+## 🛠 How to Use
+1. Run the `schema.sql` script to create the database schema.
+2. Populate the database with sample data using `sample_data.sql`.
+3. Verify the tables and data using SQL queries.
+
