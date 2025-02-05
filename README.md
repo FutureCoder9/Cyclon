@@ -27,5 +27,5 @@
 📄 License
 This project is licensed under the MIT License. See LICENSE for details.
 
-🚀 Feedback and contributions are welcome!
-🔗 Connect with me on LinkedIn https://www.linkedin.com/in/nadiya-kost/
+🚀 **Feedback and contributions welcome!**  
+🔗 **Connect on [LinkedIn](https://www.linkedin.com/in/nadiya-kost/).**
