@@ -14,3 +14,6 @@ This project demonstrates the use of stored procedures and triggers for automati
 
 ## 📄 License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+🚀 **Feedback and contributions welcome!**  
+🔗 **Connect on [LinkedIn](https://www.linkedin.com/in/nadiya-kost/).**
