@@ -114,28 +114,4 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 
 
-2) ___________________
 
-   # SQL Query Optimization Project
-
-🔗 **Part of the [Cyclon Oracle Project](https://github.com/yourusername/Cyclon)**
-
-This project focuses on optimizing a slow SQL query in the Cyclon database using **indexing, materialized views, and execution plan analysis**.
-
----
-
-## 📂 Files
-- `scripts/`: Contains SQL scripts for optimization.
-- `screenshots/`: Performance metrics before and after optimization.
-
----
-
-## 🛠 How to Use
-1. Navigate to the `scripts/` folder.
-2. Run the SQL scripts to apply optimizations.
-3. Check the `screenshots/` folder for performance comparisons.
-
----
-
-## 📄 License
-This project is licensed under the MIT License. See [LICENSE](../LICENSE) for details.
