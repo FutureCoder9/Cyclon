@@ -5,11 +5,12 @@ INSERT INTO Users (Username, Password, Role, Email, PhoneNumber) VALUES
 ('michaeldavis', 'password50', 'Admin', 'michael.davis@example.com', '084-345-6789');
 
 
+-- Sample data for Vendors table
 INSERT INTO Vendors (UserID, StoreName, Location, ContactEmail, ContactPhone) 
 VALUES 
 (2, 'Jane''s Cycles', 'Cape Town', 'jane.smith@example.com', '083-234-5678');
 
-
+-- Sample data for Products table
 INSERT INTO Products (ProductName, VendorID, Category, Price, StockQuantity) VALUES 
 ('Mountain Bike', 2, 'Bikes', 15000.00, 20),
 ('Helmet', 2, 'Accessories', 500.00, 100),
@@ -43,7 +44,6 @@ INSERT INTO Shipping (OrderID, ShippingAddress, ShippingMethod, ShippingCost) VA
 
 
 -- Sample data for Reviews table
-
 INSERT INTO Reviews (ProductID, CustomerID, Rating, ReviewText) VALUES 
 (7, 1, 5, 'Excellent bike!'),
 (8, 2, 4, 'Good quality helmet.'),
