@@ -26,8 +26,8 @@ ORDER BY TOTAL_SALES DESC;
 
 ### 🔍 Issues:
 - **Full table scan** in execution plan.
-- No indexes on `customer_id` in `orders` table.
-- Slow aggregation `(SUM(total_amount))` on a large dataset.
+- No indexes on `CUSTOMERID` in `orders` table.
+- Slow aggregation `(SUM(TOTALAMOUNT))` on a large dataset.
 
 ---
 
