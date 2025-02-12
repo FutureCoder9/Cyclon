@@ -13,12 +13,14 @@ This subproject demonstrates practical SQL tuning techniques to optimize a slow 
 The following SQL query, which calculates total sales per customer, is running slowly due to full table scans and inefficient aggregation:
 
 ```sql
-SELECT c.customer_id, c.first_name, c.last_name,
-       SUM(o.total_amount) AS total_sales
+SELECT u.USERID, u.Username, u.Email, 
+       SUM(o.TOTALAMOUNT) AS total_sales
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-GROUP BY c.customer_id, c.first_name, c.last_name
+JOIN users u ON o.CUSTOMERID = u.USERID
+GROUP BY u.USERID, u.Username, u.Email
 ORDER BY total_sales DESC;
+
+
 ```
 
 ### 🔍 Issues:
@@ -31,19 +33,17 @@ ORDER BY total_sales DESC;
 ## 🛠 Optimization Steps
 
 ### **1️⃣ Analyze Performance**
-with `EXPLAIN PLAN`:
 
-```sql
 EXPLAIN PLAN FOR
-SELECT c.customer_id, c.first_name, c.last_name,
+SELECT u.user_id, u.username, u.email,
        SUM(o.total_amount) AS total_sales
 FROM orders o
-JOIN customers c ON o.customer_id = c.customer_id
-GROUP BY c.customer_id, c.first_name, c.last_name
+JOIN users u ON o.customer_id = u.user_id
+GROUP BY u.user_id, u.username, u.email
 ORDER BY total_sales DESC;
 
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
-```
+
 
 🔹 **Findings:** Full table scan (`TABLE ACCESS FULL`).
 
@@ -56,7 +56,8 @@ Created indexes to speed up joins and aggregation:
 ```sql
 
 CREATE INDEX idx_orders_customer ON orders(CUSTOMERID);
-CREATE  INDEX idx_orders_total_amount ON orders(TOTALAMOUNT)
+CREATE INDEX idx_orders_total_amount ON orders(TOTALAMOUNT);
+
 
 ```
 
@@ -68,19 +69,20 @@ CREATE  INDEX idx_orders_total_amount ON orders(TOTALAMOUNT)
 Created a materialized view to precompute sales totals:
 
 ```sql
-CREATE MATERIALIZED VIEW mv_customer_sales AS
-SELECT customer_id, SUM(total_amount) AS total_sales
+CREATE MATERIALIZED VIEW mv_customer_sales
+AS
+SELECT CUSTOMERID, SUM(TOTALAMOUNT) AS total_sales
 FROM orders
-GROUP BY customer_id;
+GROUP BY CUSTOMERID;
 ```
 
 Optimized query:
 
 ```sql
-SELECT c.customer_id, c.first_name, c.last_name,
+SELECT u.USERID, u.USERNAME, u.EMAIL, 
        m.total_sales
 FROM mv_customer_sales m
-JOIN customers c ON m.customer_id = c.customer_id
+JOIN USERS u ON m.customerid = u.USERID
 ORDER BY m.total_sales DESC;
 ```
 
