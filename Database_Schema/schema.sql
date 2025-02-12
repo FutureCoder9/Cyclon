@@ -102,9 +102,6 @@ CREATE TABLE Reviews (
 
 CREATE INDEX idx_product_id ON Reviews(ProductID);
 
--- Index on CustomerID for Orders table
-CREATE INDEX idx_customer_id ON Orders(CustomerID);
-
 -- Index on VendorID for Products table
 CREATE INDEX idx_vendor_id ON Products(VendorID);
 
