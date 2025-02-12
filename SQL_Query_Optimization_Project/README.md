@@ -35,11 +35,14 @@ ORDER BY total_sales DESC;
 ### **1️⃣ Analyze Performance**
 ```sql
 EXPLAIN PLAN FOR
-SELECT u.user_id, u.username, u.email, 
-       mv.total_sales
-FROM mv_customer_sales mv
-JOIN users u ON mv.customer_id = u.user_id
-ORDER BY mv.total_sales DESC;
+SELECT u.UserID,
+       u.Username,
+       u.Email,
+       SUM(o.TotalAmount) AS TotalSales
+FROM Orders o
+JOIN Users u ON o.CUSTOMERID = u.UserID
+GROUP BY u.UserID, u.Username, u.Email
+ORDER BY TotalSales DESC;
 
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 
