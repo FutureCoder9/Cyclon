@@ -79,16 +79,18 @@ AS
 SELECT CUSTOMERID, SUM(TOTALAMOUNT) AS total_sales
 FROM orders
 GROUP BY CUSTOMERID;
+
 ```
 
 Optimized query:
 
 ```sql
 SELECT u.USERID, u.USERNAME, u.EMAIL, 
-       m.total_sales
+       m.TOTAL_SALES
 FROM mv_customer_sales m
-JOIN USERS u ON m.customerid = u.USERID
-ORDER BY m.total_sales DESC;
+JOIN USERS u ON m.CUSTOMERID = u.USERID
+ORDER BY m.TOTAL_SALES DESC;
+
 ```
 
 ✅ **Impact:** Precomputed data reduces runtime for reporting.
