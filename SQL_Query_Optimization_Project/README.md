@@ -5,12 +5,12 @@
 🔗 **Part of the [Cyclon Oracle Project](https://github.com/yourusername/Cyclon)**
 
 ## 🚀 Overview
-This subproject optimizes a slow SQL query in an Oracle database using **indexing, materialized views, and execution plan analysis**. It demonstrates practical SQL tuning skills.
+This subproject demonstrates practical SQL tuning techniques to optimize a slow SQL query in an Oracle database. The goal is to improve performance using execution plan analysis, indexing, and materialized views.
 
 ---
 
 ## 📌 Problem
-The following query, which calculates **total sales per customer**, is running slowly:
+The following SQL query, which calculates total sales per customer, is running slowly due to full table scans and inefficient aggregation:
 
 ```sql
 SELECT c.customer_id, c.first_name, c.last_name,
@@ -23,15 +23,15 @@ ORDER BY total_sales DESC;
 
 ### 🔍 Issues:
 - **Full table scan** in execution plan.
-- No indexes on `customer_id` in `orders`.
-- Slow `SUM()` aggregation on large datasets.
+- No indexes on `customer_id` in `orders` table.
+- Slow aggregation `(SUM(total_amount))` on a large dataset.
 
 ---
 
 ## 🛠 Optimization Steps
 
 ### **1️⃣ Analyze Performance**
-Used `EXPLAIN PLAN` to identify bottlenecks:
+with `EXPLAIN PLAN`:
 
 ```sql
 EXPLAIN PLAN FOR
@@ -46,6 +46,7 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 ```
 
 🔹 **Findings:** Full table scan (`TABLE ACCESS FULL`).
+
 
 ---
 
@@ -96,8 +97,8 @@ ORDER BY m.total_sales DESC;
 
 ## 📂 Deliverables
 - SQL scripts (original query, indexes, materialized view, optimized query).
-- `EXPLAIN PLAN` output.
-- Performance metrics (before/after screenshots).
+- `EXPLAIN PLAN` output (before/after optimizations)
+- Performance metrics with screenshots 
 
 ---
 
