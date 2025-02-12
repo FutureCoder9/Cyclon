@@ -54,8 +54,10 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 Created indexes to speed up joins and aggregation:
 
 ```sql
-CREATE INDEX idx_orders_customer ON orders(customer_id);
-CREATE INDEX idx_orders_total_amount ON orders(total_amount);
+
+CREATE INDEX idx_orders_customer ON orders(CUSTOMERID);
+CREATE  INDEX idx_orders_total_amount ON orders(TOTALAMOUNT)
+
 ```
 
 ✅ **Impact:** Faster joins and reduced aggregation time.
