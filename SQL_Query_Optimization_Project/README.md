@@ -76,7 +76,7 @@ Created a materialized view to precompute sales totals:
 ```sql
 CREATE MATERIALIZED VIEW mv_customer_sales
 AS
-SELECT CUSTOMERID, SUM(TOTALAMOUNT) AS total_sales
+SELECT CUSTOMERID, SUM(TOTALAMOUNT) AS TOTAL_SALES
 FROM orders
 GROUP BY CUSTOMERID;
 
