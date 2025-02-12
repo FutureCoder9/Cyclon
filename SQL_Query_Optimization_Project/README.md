@@ -13,12 +13,13 @@ This subproject demonstrates practical SQL tuning techniques to optimize a slow 
 The following SQL query, which calculates total sales per customer, is running slowly due to full table scans and inefficient aggregation:
 
 ```sql
-SELECT u.USERID, u.Username, u.Email, 
-       SUM(o.TOTALAMOUNT) AS total_sales
-FROM orders o
-JOIN users u ON o.CUSTOMERID = u.USERID
-GROUP BY u.USERID, u.Username, u.Email
-ORDER BY total_sales DESC;
+SELECT u.USERID, u.USERNAME, u.EMAIL, 
+       SUM(o.TOTALAMOUNT) AS TOTAL_SALES
+FROM ORDERS o
+JOIN USERS u ON o.CUSTOMERID = u.USERID
+GROUP BY u.USERID, u.USERNAME, u.EMAIL
+ORDER BY TOTAL_SALES DESC;
+
 
 
 ```
