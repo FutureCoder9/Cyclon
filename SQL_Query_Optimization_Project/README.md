@@ -112,15 +112,14 @@ REFRESH FAST ON DEMAND;
 
 
 ```
-
-Optimized query:
+Analyze Performance again 
 
 ```sql
 
 EXPLAIN PLAN FOR 
 SELECT o.UserID, SUM(o.TotalAmount) AS TotalSales
 FROM Orders o
-GROUP BY o.UserID;
+GROUP BY o.UserID .......
 
 
 ```
