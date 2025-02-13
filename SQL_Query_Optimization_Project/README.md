@@ -13,12 +13,20 @@ This subproject demonstrates practical SQL tuning techniques to optimize a slow 
 The following SQL query, which calculates total sales per customer, is running slowly due to full table scans and inefficient aggregation:
 
 ```sql
-SELECT u.USERID, u.USERNAME, u.EMAIL, 
-       SUM(o.TOTALAMOUNT) AS TOTAL_SALES
-FROM ORDERS o
-JOIN USERS u ON o.CUSTOMERID = u.USERID
-GROUP BY u.USERID, u.USERNAME, u.EMAIL
-ORDER BY TOTAL_SALES DESC;
+SELECT 
+    u.UserID, 
+    u.Username, 
+    SUM(od.Quantity * od.Price) AS TotalSales
+FROM 
+    Users u
+JOIN 
+    Orders o ON u.UserID = o.UserID
+JOIN 
+    OrderDetails od ON o.OrderID = od.OrderID
+GROUP BY 
+    u.UserID, u.Username
+ORDER BY 
+    TotalSales DESC;  -- Ordering by Total Sales in descending order
 
 
 
@@ -26,7 +34,7 @@ ORDER BY TOTAL_SALES DESC;
 
 ### 🔍 Issues:
 - **Full table scan** in execution plan.
-- No indexes on `CUSTOMERID` in `orders` table.
+- No indexes on `USERID` in `orders` table.
 - Slow aggregation `(SUM(TOTALAMOUNT))` on a large dataset.
 
 ---
