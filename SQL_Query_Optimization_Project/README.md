@@ -35,7 +35,7 @@ ORDER BY
 ### 🔍 Issues:
 - **Full table scan** in execution plan.
 - No indexes on `USERID` in `orders` table.
-- Slow aggregation `(SUM(TOTALAMOUNT))` on a large dataset.
+- Slow aggregation `(SUM( TotalSales))` on a large dataset.
 
 ---
 
@@ -44,16 +44,23 @@ ORDER BY
 ### **1️⃣ Analyze Performance**
 ```sql
 EXPLAIN PLAN FOR
-SELECT u.USERID, 
-       u.USERNAME, 
-       u.EMAIL, 
-       SUM(o.TOTALAMOUNT) AS TOTAL_SALES
-FROM ORDERS o
-JOIN USERS u ON o.CUSTOMERID = u.USERID
-GROUP BY u.USERID, u.USERNAME, u.EMAIL
-ORDER BY TOTAL_SALES DESC;
+SELECT 
+    u.UserID, 
+    u.Username, 
+    SUM(od.Quantity * od.Price) AS TotalSales
+FROM 
+    Users u
+JOIN 
+    Orders o ON u.UserID = o.UserID
+JOIN 
+    OrderDetails od ON o.OrderID = od.OrderID
+GROUP BY 
+    u.UserID, u.Username
+ORDER BY 
+    TotalSales DESC;
 
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
+
 
 
 ```
@@ -68,8 +75,11 @@ Created indexes to speed up joins and aggregation:
 
 ```sql
 
-CREATE INDEX idx_orders_customer ON orders(CUSTOMERID);
-CREATE INDEX idx_orders_total_amount ON orders(TOTALAMOUNT);
+CREATE INDEX idx_user_id ON Users(UserID);
+CREATE INDEX idx_order_user_id ON Orders(UserID);
+CREATE INDEX idx_orderdetails_order_id ON OrderDetails(OrderID);
+CREATE INDEX idx_orderdetails_product_id ON OrderDetails(ProductID);  -- If needed
+
 
 
 ```
@@ -82,22 +92,37 @@ CREATE INDEX idx_orders_total_amount ON orders(TOTALAMOUNT);
 Created a materialized view to precompute sales totals:
 
 ```sql
-CREATE MATERIALIZED VIEW mv_customer_sales
+CREATE MATERIALIZED VIEW mv_total_sales_per_customer
 AS
-SELECT CUSTOMERID, SUM(TOTALAMOUNT) AS TOTAL_SALES
-FROM orders
-GROUP BY CUSTOMERID;
+SELECT 
+    u.UserID, 
+    u.Username, 
+    SUM(od.Quantity * od.Price) AS TotalSales
+FROM 
+    Users u
+JOIN 
+    Orders o ON u.UserID = o.UserID
+JOIN 
+    OrderDetails od ON o.OrderID = od.OrderID
+GROUP BY 
+    u.UserID, u.Username;
+
+-- Refresh the materialized view every hour
+ALTER MATERIALIZED VIEW mv_total_sales_per_customer 
+REFRESH FAST ON DEMAND;
+
 
 ```
 
 Optimized query:
 
 ```sql
-SELECT u.USERID, u.USERNAME, u.EMAIL, 
-       m.TOTAL_SALES
-FROM mv_customer_sales m
-JOIN USERS u ON m.CUSTOMERID = u.USERID
-ORDER BY m.TOTAL_SALES DESC;
+
+EXPLAIN PLAN FOR 
+SELECT o.UserID, SUM(o.TotalAmount) AS TotalSales
+FROM Orders o
+GROUP BY o.UserID;
+
 
 ```
 
