@@ -75,7 +75,6 @@ Created indexes to speed up joins and aggregation:
 
 ```sql
 
-CREATE INDEX idx_user_id ON Users(UserID);
 CREATE INDEX idx_order_user_id ON Orders(UserID);
 CREATE INDEX idx_orderdetails_order_id ON OrderDetails(OrderID);
 CREATE INDEX idx_orderdetails_product_id ON OrderDetails(ProductID);  -- If needed
