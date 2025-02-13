@@ -1,4 +1,4 @@
--- Sample data for Users table (Customers, Vendors, Admins)
+-- Sample data for Users table (Customers, Vendors, Admins) 
 INSERT INTO Users (Username, Password, Role, Email, PhoneNumber) VALUES 
 ('johndoe', 'password1', 'Customer', 'john.doe@example.com', '082-123-4567'),
 ('janesmith', 'password2', 'Vendor', 'jane.smith@example.com', '083-234-5678'),
@@ -15,6 +15,7 @@ INSERT INTO Users (Username, Password, Role, Email, PhoneNumber) VALUES
 
 
 -- Sample data for Vendors table
+-- Note: UserID must correspond to valid UserIDs in the Users table
 INSERT INTO Vendors (UserID, StoreName, Location, ContactEmail, ContactPhone) 
 VALUES 
 (2, 'Jane''s Cycles', 'Cape Town', 'jane.smith@example.com', '083-234-5678'),
@@ -23,6 +24,7 @@ VALUES
 
 
 -- Sample data for Products table
+-- Note: VendorID must correspond to valid VendorIDs in the Vendors table
 INSERT INTO Products (ProductName, VendorID, Category, Price, StockQuantity) VALUES 
 ('Mountain Bike', 2, 'Bikes', 15000.00, 20),
 ('Helmet', 2, 'Accessories', 500.00, 100),
@@ -33,8 +35,10 @@ INSERT INTO Products (ProductName, VendorID, Category, Price, StockQuantity) VAL
 ('Dining Table', 3, 'Furniture', 6000.00, 20),
 ('Chair', 3, 'Furniture', 1200.00, 50);
 
+
 -- Sample data for Orders table
-INSERT INTO Orders (CustomerID, TotalAmount, PaymentStatus, ShippingStatus) VALUES 
+-- Note: UserID must correspond to valid UserIDs in the Users table
+INSERT INTO Orders (UserID, TotalAmount, PaymentStatus, ShippingStatus) VALUES 
 (1, 15500.00, 'Paid', 'Shipped'),
 (2, 2500.00, 'Pending', 'Pending'),
 (3, 7500.00, 'Paid', 'Shipped'),
@@ -48,19 +52,22 @@ INSERT INTO Orders (CustomerID, TotalAmount, PaymentStatus, ShippingStatus) VALU
 
 
 -- Sample data for OrderDetails table
+-- Note: OrderID and ProductID must correspond to valid OrderIDs and ProductIDs in the respective tables
 INSERT INTO OrderDetails (OrderID, ProductID, Quantity, Price) VALUES 
-(1, 17, 1, 15000.00),
-(1, 18, 1, 500.00),
-(2, 19, 2, 150.00),
-(3, 20, 1, 5000.00),
-(3, 21, 1, 12000.00),
-(4, 22, 1, 8000.00),
-(4, 23, 1, 6000.00),
-(5, 24, 2, 1200.00),
-(6, 17, 1, 5000.00),
-(7, 18, 1, 2000.00);
+(1, 1, 1, 15000.00),
+(1, 2, 1, 500.00),
+(2, 3, 2, 150.00),
+(3, 4, 1, 5000.00),
+(3, 5, 1, 12000.00),
+(4, 6, 1, 8000.00),
+(4, 7, 1, 6000.00),
+(5, 8, 2, 1200.00),
+(6, 1, 1, 5000.00),
+(7, 2, 1, 2000.00);
+
 
 -- Sample data for Payments table
+-- Note: OrderID must correspond to valid OrderIDs in the Orders table
 INSERT INTO Payments (OrderID, PaymentMethod, PaymentAmount) VALUES 
 (1, 'Credit Card', 15500.00),
 (2, 'PayPal', 2500.00),
@@ -75,6 +82,7 @@ INSERT INTO Payments (OrderID, PaymentMethod, PaymentAmount) VALUES
 
 
 -- Sample data for Shipping table
+-- Note: OrderID must correspond to valid OrderIDs in the Orders table
 INSERT INTO Shipping (OrderID, ShippingAddress, ShippingMethod, ShippingCost) VALUES 
 (1, '123 Main St, Johannesburg', 'Standard', 100.00),
 (2, '456 Elm St, Cape Town', 'Express', 200.00),
@@ -88,15 +96,15 @@ INSERT INTO Shipping (OrderID, ShippingAddress, ShippingMethod, ShippingCost) VA
 (10, '707 Pine St, Mbombela', 'Express', 200.00);
 
 
-
 -- Sample data for Reviews table
-INSERT INTO Reviews (ProductID, CUSTOMERID, Rating, ReviewText, CREATEDAT) VALUES 
-(17, 1, 5, 'Excellent bike, smooth ride and durable.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
-(18, 4, 4, 'Good helmet, but could use better padding.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
-(19, 6, 5, 'Great water bottle, keeps my drinks cool for hours!', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
-(20, 7, 4, 'Nice phone, but battery life could be better.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
-(21, 8, 5, 'Laptop is fast and powerful, highly recommend it!', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
-(22, 9, 3, 'Sofa is comfortable but a bit too firm for my liking.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
-(23, 10, 4, 'Dining table looks great, but the assembly was difficult.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
-(24, 11, 5, 'Chair is very comfortable and stylish.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD'));
+-- Note: ProductID and UserID must correspond to valid ProductIDs and UserIDs in the respective tables
+INSERT INTO Reviews (ProductID, UserID, Rating, ReviewText, CreatedAt) VALUES 
+(1, 2, 5, 'Excellent bike, smooth ride and durable.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
+(2, 5, 4, 'Good helmet, but could use better padding.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
+(3, 6, 5, 'Great water bottle, keeps my drinks cool for hours!', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
+(4, 7, 4, 'Nice phone, but battery life could be better.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
+(5, 8, 5, 'Laptop is fast and powerful, highly recommend it!', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
+(6, 9, 3, 'Sofa is comfortable but a bit too firm for my liking.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
+(7, 10, 4, 'Dining table looks great, but the assembly was difficult.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD')),
+(8, 11, 5, 'Chair is very comfortable and stylish.', TO_TIMESTAMP('2025-02-13', 'YYYY-MM-DD'));
 
