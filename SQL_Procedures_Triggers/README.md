@@ -26,9 +26,9 @@ This project demonstrates the use of stored procedures and triggers to automate 
 
 *   **`update_orders_total_amount.sql`:** A trigger that automatically updates the `TotalAmount` in the `Orders` table whenever a new item is added or an existing item is updated in the `OrderDetails` table.
 *   **`prevent_vendor_deletion.sql`:** A trigger that prevents deleting a vendor from the `Vendors` table if the vendor has associated products in the `Products` table.  This maintains data integrity.
-*   **`log_product_changes.sql`:** A trigger that logs all changes (inserts, updates, deletes) to the `Products` table in a separate `Product_Log` audit table. This is useful for auditing and tracking data modifications [1].
+*   **`log_product_changes.sql`:** A trigger that logs all changes (inserts, updates, deletes) to the `Products` table in a separate `Product_Log` audit table. This is useful for auditing and tracking data modifications .
     *  Logs changes to a table is important for auditing and maintaining a history of data modifications .
-*   **Consider to implement Recursive Triggers:** With indirect recursion, an application updates table T1. This fires trigger TR1, updating table T2. Trigger T2 then fires and updates table T1 [4].
+*   **Consider to implement Recursive Triggers:** With indirect recursion, an application updates table T1. This fires trigger TR1, updating table T2. Trigger T2 then fires and updates table T1( TO DO !!!!) 
 
 ## 🧪 How to Use
 
@@ -38,7 +38,7 @@ This project demonstrates the use of stored procedures and triggers to automate 
     *   Sample calls to the stored procedures with different input values.
     *   Demonstration of how the triggers automatically respond to data changes.
     *   Examples of error handling and exception handling.
-4.  **Displaying existing triggers:** You can view existing triggers in a database using specific queries based on your SQL database management system (DBMS). For instance, in MySQL: `SHOW TRIGGERS;` [1]
+4.  **Displaying existing triggers:** You can view existing triggers in a database using specific queries based on your SQL database management system (DBMS). For instance, in MySQL: `SHOW TRIGGERS;` 
 
 ## 🔑 Key Concepts Demonstrated
 
@@ -50,7 +50,7 @@ This project demonstrates the use of stored procedures and triggers to automate 
 
 ## 📜 Syntax and Structure of SQL Triggers
 
-The basic syntax of an SQL trigger includes the creation statement, the event that activates the trigger, and the SQL statements that define the trigger's actions [1]. Here’s a general template for creating a trigger (example for MySQL and Oracle) [1]:
+The basic syntax of an SQL trigger includes the creation statement, the event that activates the trigger, and the SQL statements that define the trigger's actions . Here’s a general template for creating a trigger (example for MySQL and Oracle) :
 
 ```sql
 CREATE TRIGGER trigger_name
