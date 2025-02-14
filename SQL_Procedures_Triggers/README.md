@@ -52,9 +52,7 @@ This project demonstrates the use of stored procedures and triggers to automate 
 
 The basic syntax of an SQL trigger includes the creation statement, the event that activates the trigger, and the SQL statements that define the trigger's actions [1]. Here’s a general template for creating a trigger (example for MySQL and Oracle) [1]:
 
-sql 
-
-`
+```sql
 CREATE TRIGGER trigger_name
 [BEFORE | AFTER] [INSERT | UPDATE | DELETE]
 ON table_name
@@ -62,7 +60,7 @@ FOR EACH ROW
 BEGIN
 -- SQL statements
 END; 
-`
+```
 
 
 ## 📄 License
