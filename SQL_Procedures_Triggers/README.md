@@ -2,7 +2,7 @@
 
 🚀 Part of the Cyclon Oracle Project
 
-This project demonstrates the use of stored procedures and triggers to automate database tasks, enforce data integrity, and encapsulate business logic within the Cyclon e-commerce platform. SQL triggers are automated code blocks that execute when specific events occur on a table or view, such as inserts, updates, or deletes [3]. Triggers are special types of stored procedures that automatically run when an event occurs in the database server [4].
+This project demonstrates the use of stored procedures and triggers to automate database tasks, enforce data integrity, and encapsulate business logic within the Cyclon e-commerce platform. SQL triggers are automated code blocks that execute when specific events occur on a table or view, such as inserts, updates, or deletes . Triggers are special types of stored procedures that automatically run when an event occurs in the database server .
 
 ## 🎯 Goals
 
@@ -27,7 +27,7 @@ This project demonstrates the use of stored procedures and triggers to automate 
 *   **`update_orders_total_amount.sql`:** A trigger that automatically updates the `TotalAmount` in the `Orders` table whenever a new item is added or an existing item is updated in the `OrderDetails` table.
 *   **`prevent_vendor_deletion.sql`:** A trigger that prevents deleting a vendor from the `Vendors` table if the vendor has associated products in the `Products` table.  This maintains data integrity.
 *   **`log_product_changes.sql`:** A trigger that logs all changes (inserts, updates, deletes) to the `Products` table in a separate `Product_Log` audit table. This is useful for auditing and tracking data modifications [1].
-    *  Logs changes to a table is important for auditing and maintaining a history of data modifications [1].
+    *  Logs changes to a table is important for auditing and maintaining a history of data modifications .
 *   **Consider to implement Recursive Triggers:** With indirect recursion, an application updates table T1. This fires trigger TR1, updating table T2. Trigger T2 then fires and updates table T1 [4].
 
 ## 🧪 How to Use
