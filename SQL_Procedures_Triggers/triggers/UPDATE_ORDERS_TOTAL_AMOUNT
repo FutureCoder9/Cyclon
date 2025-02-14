@@ -1,5 +1,6 @@
 ---- Trigger to handle all three events (INSERT, UPDATE, and DELETE) using a compound trigger
-sql 
+
+```sql
 
 CREATE OR REPLACE TRIGGER update_orders_total_amount
 FOR INSERT OR UPDATE OR DELETE ON OrderDetails
@@ -50,4 +51,4 @@ COMPOUND TRIGGER
     END AFTER STATEMENT;
 END;
 /
-
+```
