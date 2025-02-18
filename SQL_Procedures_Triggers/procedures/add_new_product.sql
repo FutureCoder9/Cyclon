@@ -27,13 +27,15 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20002, 'An error occurred: ' || SQLERRM);
 END add_new_product;
 /
---Testing the Procedure
---To test this procedure with the example values you provided:
 
+-- Call the procedure in an anonymous block
 BEGIN
     add_new_product(12, 'lamp', 3, 'Furniture', 350, 50);
 END;
 /
+
+-- Verify the inserted record
+SELECT * FROM products WHERE productid = 12;
 
 
 
