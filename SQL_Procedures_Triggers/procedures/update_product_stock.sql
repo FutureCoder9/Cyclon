@@ -1,13 +1,16 @@
-CREATE OR REPLACE PROCEDURE update_product_stock (
+
+    CREATE OR REPLACE PROCEDURE update_product_stock (
     p_productid NUMBER,
     p_quantity_change NUMBER
 ) AS
     current_stock NUMBER;
 BEGIN
-    -- Check if the product exists
-    SELECT stockquantity INTO current_stock
+    -- Check if the product exists and lock the row
+    SELECT stockquantity
+    INTO current_stock
     FROM products
-    WHERE productid = p_productid;
+    WHERE productid = p_productid
+    FOR UPDATE;
 
     -- Calculate the new stock quantity
     current_stock := current_stock + p_quantity_change;
@@ -22,6 +25,7 @@ BEGIN
     SET stockquantity = current_stock
     WHERE productid = p_productid;
 
+    (-- COMMIT; -- Remove commit to allow caller to control transaction) Optional 
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
