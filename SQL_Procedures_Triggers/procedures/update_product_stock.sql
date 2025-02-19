@@ -22,7 +22,6 @@ BEGIN
     SET stockquantity = current_stock
     WHERE productid = p_productid;
 
-    COMMIT;
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
