@@ -1,5 +1,5 @@
 
-    CREATE OR REPLACE PROCEDURE update_product_stock (
+CREATE OR REPLACE PROCEDURE update_product_stock (
     p_productid NUMBER,
     p_quantity_change NUMBER
 ) AS
@@ -25,7 +25,8 @@ BEGIN
     SET stockquantity = current_stock
     WHERE productid = p_productid;
 
-    (-- COMMIT; -- Remove commit to allow caller to control transaction) Optional 
+    -- Remove commit to allow caller to control transaction (Optional)
+    -- COMMIT;
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
@@ -34,7 +35,6 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20002, 'An error occurred: ' || SQLERRM);
 END update_product_stock;
 /
-
 
 ------Explanation:
 ---Parameters: The procedure takes two input parameters:
