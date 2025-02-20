@@ -4,6 +4,7 @@
 # The original Docker container was created without any volume mounts, 
 # preventing RMAN from storing backup files in a persistent location. 
 # This resulted in backups failing due to the missing directory '/backup/rman_backups'. 
+# Without a proper backup location, database recovery would be impossible in case of failure. 
 # To resolve this, we need to recreate the container with a proper volume mount.
 
 # Commit the existing container to a new image
@@ -25,5 +26,3 @@ docker run -d \
 # Verify the setup
 docker exec -it oracle_cyclon_container bash
 ls -l /backup/rman_backups
-
----
