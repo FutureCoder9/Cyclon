@@ -71,4 +71,23 @@ echo "Backup completed successfully."
 # Notes
 # - Ensure that Docker is running and that the oracle_cyclon_container container is active.
 # - Regularly schedule this process or automate it using a cron job or Task Scheduler.
-# - Store backups offsite or in cloud storage for additional safety.
+# - Store backups offsite or in cloud storage for additional safety.  
+
+
+###################################
+
+
+
+Backup_Piece_Information:
+  Backup_Piece_Name: "/backup/rman_backups/backup_piece_20250220_01.bkp"
+  Backup_Date: "20-FEB-2025"
+  Backup_Time: "12:30:00"
+  Database_Name: "FREE"
+  DBID: 1459905065
+  Backup_Type: "Full Backup"
+  Size: "5.2 GB"
+  Number_of_Datafiles_Backup: 10
+  Status: "Successful"
+
+
+###################################
