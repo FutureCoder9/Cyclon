@@ -33,23 +33,5 @@ docker run -d \
 •	Connect to the new container:
 docker exec -it oracle_cyclon_container bash
 •	Check if the volume mount is correctly set up:
-•	
-ls -l /backup/rman_backups  
 
-ACTUAL BACKUP : 
-
-6.	Configure RMAN for Backups:
-•	Connect to RMAN:
-rman target /
-•	Set up control file autobackup format:
-sql
-CONFIGURE CONTROLFILE AUTOBACKUP FORMAT FOR DEVICE TYPE DISK TO '/backup/rman_backups/%F';
-CONFIGURE CONTROLFILE AUTOBACKUP ON;
-•	Run a test backup:
-sql
-BACKUP DATABASE PLUS ARCHIVELOG;
-7.	Monitor Backup Location:
-•	Verify that backup files are created in C:\data\oracle_backups on your host machine.
-8.	Performance Tuning (Optional):
-•	After backups are set up, consider performance tuning using RMAN techniques, such as enabling parallelism and adjusting redo log sizes.
-
+test the backup with test.file 
