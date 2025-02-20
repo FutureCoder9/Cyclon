@@ -1,8 +1,17 @@
 # Backup, Recovery & Performance Tuning
 
 This project contains scripts and techniques for **database backup**, **recovery**, and **performance tuning** in Cyclon.
+## Backup : 
 
----
+What I have Accomplished:
+
+1)Configured RMAN: I have set up RMAN to back up your Oracle database, including the Cyclon schema.
+
+2)Executed a Full Backup: I successfully executed a backup command that included:
+   _The database itself.
+   _The control file and SPFILE (automatically backed up by RMAN).
+   
+3) Verified Backup Files: You confirmed that the backup files were created and are accessible both inside the Docker container and on your host machine.
 
 ## 📂 Files
 - `backup_scripts/`: Scripts for database backup.
