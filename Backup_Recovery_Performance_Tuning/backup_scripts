@@ -34,7 +34,9 @@ docker run -d \
 docker exec -it oracle_cyclon_container bash
 •	Check if the volume mount is correctly set up:
 •	
-ls -l /backup/rman_backups
+ls -l /backup/rman_backups  
+
+ACTUAL BACKUP : 
 
 6.	Configure RMAN for Backups:
 •	Connect to RMAN:
