@@ -28,4 +28,4 @@
 This project is licensed under the MIT License. See LICENSE for details.
 
 🚀 **Feedback and contributions welcome!**  
-🔗 **Connect on [LinkedIn](https://www.linkedin.com/in/nadiya-kost/).**
+🔗 **Connect on [LinkedIn](https://www.linkedin.com/in/nadiya-koss/).**
